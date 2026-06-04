@@ -2,26 +2,26 @@
 import sys
 
 
-def celsius_to_fahrenheit(c):
+def celsius_to_fahrenheit(c: int | float) -> int | float:
     return c * 1.8 + 32
 
-def fahrenheit_to_celsius(f):
+def fahrenheit_to_celsius(f: int | float) -> int | float:
     return (f - 32) / 1.8
 
-def celsius_to_kelvin(c):
+def celsius_to_kelvin(c: int | float) -> int | float:
     return c + 273.15
 
-def kelvin_to_celsius(k):
+def kelvin_to_celsius(k: int | float) -> int | float:
     return k - 273.15
 
-def fahrenheit_to_kelvin(f):
+def fahrenheit_to_kelvin(f: int | float) -> int | float:
     return (f - 32) / 1.8 + 273.15
 
-def kelvin_to_fahrenheit(k):
+def kelvin_to_fahrenheit(k: int | float) -> int | float:
     return (k - 273.15) * 1.8 + 32
 
 
-strings_dict = {
+strings_dict: dict[str, dict[str, str]] = {
     'en': {
         'menu': '\n1. C -> F\n2. F -> C\n3. C -> K\n4. K -> C\n5. F -> K\n6. K -> F\n7. Exit',
         'choice': 'Choose conversion (1-7): ',
@@ -43,11 +43,11 @@ strings_dict = {
 }
 
 
-def main():
+def main() -> None:
     print('--- Temperature Converter CLI / Конвертер температуры CLI ---')
 
     while True:
-        language = input('Select language / Выберите язык (en/ru): ').strip().lower()
+        language: str = input('Select language / Выберите язык (en/ru): ').strip().lower()
         if language in ['en', 'ru']:
             break
         print('Invalid language / Неверный язык. Use / Используйте en or / или ru')
@@ -55,7 +55,7 @@ def main():
     while True:
         print(strings_dict[language]['menu'])
 
-        choice = input(strings_dict[language]['choice']).strip()
+        choice: str = input(strings_dict[language]['choice']).strip()
 
         if choice == '7':
             print(strings_dict[language]['exit'])
@@ -66,13 +66,13 @@ def main():
             continue
 
         try:
-            value = float(input(strings_dict[language]['temperature']))
+            value: float = float(input(strings_dict[language]['temperature']))
         except ValueError:
             print(strings_dict[language]['error_number'])
             continue
 
 
-        result_word = strings_dict[language]['result']
+        result_word: str = strings_dict[language]['result']
 
         print()
 
